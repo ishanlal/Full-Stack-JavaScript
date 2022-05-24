@@ -1,10 +1,12 @@
 import Client from '../database';
+//import bcrypt from 'bcrypt';
 
 export type Book = {
   id: number;
   title: string ;
   author: string;
-  totalPages: number;
+  total_pages: number;
+  type: string;
   summary: string;
 }
 
@@ -20,7 +22,7 @@ export class BookStore{
       throw new Error(`Could not get books. Error: ${err}`);
     }
   }
-  async show(id: string): Promise<Book> {
+  async show(id: number): Promise<Book> {
     try{
       const sql = 'SELECT * FROM books WHERE id=($1)';
       const conn = await Client.connect();
@@ -33,9 +35,9 @@ export class BookStore{
   }
   async create(b: Book): Promise<Book>{
     try{
-      const sql = 'INSERT INTO books (title, author, total_pages, summary) VALUES ($1, $2, $3, $4) RETURNING *'
+      const sql = 'INSERT INTO books (id, title, author, total_pages, type, summary) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *'
       const conn = await Client.connect();
-      const result = await conn.query(sql, [b.title, b.author, b.totalPages, b.summary]);
+      const result = await conn.query(sql, [b.id, b.title, b.author, b.total_pages, b.type, b.summary]);
       const book = result.rows[0];
       conn.release();
       return book;
@@ -43,7 +45,7 @@ export class BookStore{
       throw new Error(`Could not add new book ${b.title}. Error: ${err}`);
     }
   }
-  async delete(id: string): Promise<Book>{
+  async delete(id: number): Promise<Book>{
     try{
       const sql = 'DELETE FROM books WHERE id=($1)'
       const conn = await Client.connect();

@@ -10,7 +10,7 @@ POSTGRES_TEST,
 ENV
 } = process.env
 
-let client;
+let client: Pool; //  =  new Pool();
 console.log(ENV);
 
 // connect to database
@@ -22,7 +22,7 @@ if(ENV === 'test'){
     password: POSTGRES_PASSWORD,
   });
 }
-if(ENV === 'dev'){
+else {
   client = new Pool({
     host: POSTGRES_HOST,
     database: POSTGRES_DB,
