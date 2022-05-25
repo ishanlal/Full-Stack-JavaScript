@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import article_routes from './handlers/article_handlers';
 import book_routes from './handlers/book_handlers';
+import user_routes from './handlers/user_handlers';
 
 const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
@@ -71,6 +72,7 @@ app.delete('/articles/:id', (_req: Request, res: Response) => {
 
 article_routes(app);
 book_routes(app);
+user_routes(app);
 
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)

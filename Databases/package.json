@@ -8,7 +8,7 @@
     "start": "nodemon src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "migrate": "db-migrate --env test up && db-migrate up",
-    "test": "ENV=test db-migrate --env test up && tsc && jasmine && db-migrate db:drop test",
+    "test": "ENV=test db-migrate --env test reset && db-migrate --env test up && tsc && jasmine && db-migrate --env test reset",
     "tsc": "tsc"
   },
   "author": "Ishan Lal <ishanlal@gmail.com>",
@@ -30,6 +30,7 @@
     "typescript": "^4.6.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/jasmine": "^4.0.3",

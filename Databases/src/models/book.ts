@@ -1,5 +1,4 @@
 import Client from '../database';
-//import bcrypt from 'bcrypt';
 
 export type Book = {
   id: number;
