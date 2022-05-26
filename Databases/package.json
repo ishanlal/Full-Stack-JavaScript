@@ -8,7 +8,7 @@
     "start": "nodemon src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "migrate": "db-migrate --env test up && db-migrate up",
-    "test": "ENV=test db-migrate --env test reset && db-migrate --env test up && tsc && jasmine && db-migrate --env test reset",
+    "test": "DOTENV_CONFIG_ENV=test db-migrate --env test reset && db-migrate --env test up && tsc && jasmine && db-migrate --env test reset",
     "tsc": "tsc"
   },
   "author": "Ishan Lal <ishanlal@gmail.com>",
@@ -23,6 +23,7 @@
     "jasmine": "^4.1.0",
     "jasmine-spec-reporter": "^7.0.0",
     "jasmine-ts": "^0.4.0",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3",
     "ts-node": "^10.7.0",
@@ -34,6 +35,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/jasmine": "^4.0.3",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.31",
     "@types/pg": "^8.6.5"
   }

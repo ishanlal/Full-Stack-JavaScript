@@ -1,5 +1,6 @@
 import express from 'express';
 import { Book, BookStore } from '../models/book';
+import jwt from 'jsonwebtoken';
 
 const store = new BookStore();
 

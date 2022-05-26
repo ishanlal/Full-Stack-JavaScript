@@ -1,5 +1,6 @@
 import express from 'express';
 import { User, UserStore } from '../models/user';
+import jwt from 'jsonwebtoken';
 
 const store = new UserStore();
 

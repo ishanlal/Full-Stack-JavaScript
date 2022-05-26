@@ -1,6 +1,9 @@
 import {User, UserStore} from '../user';
+import bcrypt from 'bcrypt';
 
 const store = new UserStore();
+const saltRounds = process.env.SALT_ROUNDS;
+const pepper = process.env.BCRYPT_PASSWORD;
 
 describe ("User Model", () =>{
   it('should have an index method', ()=>{
@@ -19,40 +22,56 @@ describe ("User Model", () =>{
       expect(store.delete).toBeDefined();
     });
 
-    it('create method should add a user', async () => {
+    });
+
+    /*it('create method should add a user', async function create() {
       const result = await store.create({
         id: 1,
         username: 'firstUser',
         password_digest: `haha`
       });
-      expect(result).toEqual({
-        id: 1,
-        username: 'firstUser',
-        password_digest: 'haha'
-      });
-    });
+      expect(result.id).toEqual(1);
+      expect(result.username).toEqual('firstUser');
+      expect(bcrypt.compareSync('haha'+pepper, result.password_digest)).toBe(true);
+    });*/
 
+describe ("Test user create and delete functions", () =>{
+  beforeEach(async()=>{
+    await create();
+  });
+  it('delete method should remove the user', async () => {
+    const d = await store.delete(1);
+    const result = await store.index();
+    expect(result).toEqual([]);
+  });
+});
+
+describe ("Test Show and Index functions", () =>{
+    beforeEach(async()=>{
+      await create();
+    });
+    afterEach(async()=>{
+      await store.delete(1);
+    });
     it('index method should return a list of users', async () => {
       const result = await store.index();
-      expect(result).toEqual([{
-        id: 1,
-        username: 'firstUser',
-        password_digest: 'haha'
-      }]);
+      expect(result.length).toEqual(1);
     });
-
     it('show method should return the correct user', async () => {
       const result = await store.show(1);
-      expect(result).toEqual({
-        id: 1,
-        username: 'firstUser',
-        password_digest: 'haha'
-      });
+      expect(result.id).toEqual(1);
+      expect(result.username).toEqual('firstUser');
+      expect(bcrypt.compareSync('haha'+pepper, result.password_digest)).toBe(true);
     });
+  });
 
-    it('delete method should remove the user', async () => {
-      store.delete(1);
-      const result = await store.index();
-      expect(result).toEqual([]);
+  async function create() {
+    const result = await store.create({
+      id: 1,
+      username: 'firstUser',
+      password_digest: `haha`
     });
-});
+    expect(result.id).toEqual(1);
+    expect(result.username).toEqual('firstUser');
+    expect(bcrypt.compareSync('haha'+pepper, result.password_digest)).toBe(true);
+  }
