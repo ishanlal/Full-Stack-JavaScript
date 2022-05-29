@@ -1,8 +1,10 @@
 import express from 'express';
 import { Book, BookStore } from '../models/book';
+import Client from '../database';
 import jwt from 'jsonwebtoken';
 
 const store = new BookStore();
+const secret = process.env.TOKEN_SECRET;
 
 const index = async (_req: express.Request, res: express.Response) => {
   const books = await store.index();
@@ -10,11 +12,22 @@ const index = async (_req: express.Request, res: express.Response) => {
 }
 
 const show = async (_req: express.Request, res: express.Response) => {
+  //console.log('show');
    const book = await store.show(_req.body.id);
    res.json(book);
 }
 
 const create = async (_req: express.Request, res: express.Response) => {
+    try {
+      let authorizationHeader = '';
+          authorizationHeader = (_req.headers.authorization as unknown as string);
+          const token = authorizationHeader.split(' ')[1];
+          jwt.verify(token, (process.env.TOKEN_SECRET as unknown as string));
+      } catch(err) {
+          res.status(401);
+          res.json('Access denied, invalid token');
+          return;
+      }
     try {
         const book: Book = {
             id: _req.body.id,
@@ -34,13 +47,28 @@ const create = async (_req: express.Request, res: express.Response) => {
 }
 
 const destroy = async (_req: express.Request, res: express.Response) => {
+  try {
+    let authorizationHeader = '';
+        authorizationHeader = (_req.headers.authorization as unknown as string);
+        const token = authorizationHeader.split(' ')[1];
+        jwt.verify(token, (process.env.TOKEN_SECRET as unknown as string));
+    } catch(err) {
+        res.status(401);
+        res.json('Access denied, invalid token');
+        return;
+    }
+  try{
     const deleted = await store.delete(_req.body.id);
     res.json(deleted);
+  } catch(error){
+    res.status(400);
+    res.json({ error });
+  }
 }
 
 const book_routes = (app: express.Application) => {
   app.get('/books', index);
-  app.get('/books/{:id}', show);
+  app.get('/books/:id', show);
   app.post('/books', create);
   app.delete('/books', destroy);
 }
