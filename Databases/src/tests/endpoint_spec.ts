@@ -4,22 +4,27 @@ import app from '../server';
 const request = supertest(app);
 let token: string;
 
-describe('Test User endpoint responses', () => {
-    it('delete the users endpoint', async () => {
-        const response = await request.delete('/users').send({
-          id: 1
-        });
-        expect(response.status).toBe(200);
+describe('Test User and Book endpoints: ', () => {
+    beforeAll(async()=>{
+      await createUser();
     });
-    it('post the users endpoint', async () => {
+    afterAll(async()=>{
+      const response = await request.delete('/users').send({
+        id: 1
+      });
+      expect(response.status).toBe(200);
+    });
+    /*it('post the users endpoint', async () => {
         const response = await request.post('/users').send({
           id: 1,
           username: 'JohnDoe',
           password_digest: 'hehe'
         });
+        console.log(response.body);
         token = response.body;
+        console.log(token);
         expect(response.status).toBe(200);
-    });
+    });*/
     it('gets the users index endpoint', async () => {
         const response = await request.get('/users');
         expect(response.status).toBe(200);
@@ -28,17 +33,7 @@ describe('Test User endpoint responses', () => {
         const response = await request.get('/users/:id').send({id: 1});
         expect(response.status).toBe(200);
     });
-});
 
-describe('Test Book endpoint responses', () => {
-  it('delete the books endpoint', async () => {
-    const response = await request.delete('/books').send({
-      id: 1
-    }).set({
-      authorization: 'Bearer ' + token
-    });
-    expect(response.status).toBe(200);
-  });
   it('post the books endpoint', async () => {
     const response = await request.post('/books').send({
       id: 1,
@@ -60,4 +55,29 @@ describe('Test Book endpoint responses', () => {
     const response = await request.get('/books/:id').send({id: 1});
     expect(response.status).toBe(200);
   });
+  it('delete the books endpoint', async () => {
+    const response = await request.delete('/books').send({
+      id: 1
+    }).set({
+      authorization: 'Bearer ' + token
+    });
+    expect(response.status).toBe(200);
+  });
+  /*it('delete the users endpoint', async () => {
+      const response = await request.delete('/users').send({
+        id: 1
+      });
+      expect(response.status).toBe(200);
+  });*/
 });
+
+
+async function createUser() {
+  const response = await request.post('/users').send({
+    id: 1,
+    username: 'JohnDoe',
+    password_digest: 'hehe'
+  });
+  token = response.body;
+  expect(response.status).toBe(200);
+}

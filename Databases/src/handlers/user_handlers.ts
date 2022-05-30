@@ -59,7 +59,7 @@ const update = async (_req: express.Request, res: express.Response) => {
         username: _req.body.username,
         password_digest: _req.body.password_digest,
     }
-    try {
+    /*try {
         let authorizationHeader = '';
         authorizationHeader = (_req.headers.authorization as unknown as string);
         const token = authorizationHeader.split(' ')[1];
@@ -71,7 +71,7 @@ const update = async (_req: express.Request, res: express.Response) => {
         res.status(401);
         res.json(err);
         return;
-    }
+    }*/
 
     try {
         const updated = await store.create(user)
@@ -82,11 +82,26 @@ const update = async (_req: express.Request, res: express.Response) => {
     }
 }
 
+const verifyAuthToken = (_req: express.Request, res: express.Response, next: any) => {
+  console.log('UVAT called!!!');
+    try {
+      let authorizationHeader = '';
+        authorizationHeader = (_req.headers.authorization as unknown as string);
+        const token = authorizationHeader.split(' ')[1];
+        const decoded = jwt.verify(token, (secret as unknown as string));
+        next();
+    } catch (error) {
+        res.status(401);
+    }
+}
+
 const user_routes = (app: express.Application) => {
   app.get('/users', index);
   app.get('/users/:id', show);
   app.post('/users', create);
+  app.put('/users', verifyAuthToken, update);
   app.delete('/users', destroy);
+  //app.post('/users/authenticate', authenticate);
 }
 
 export default user_routes;

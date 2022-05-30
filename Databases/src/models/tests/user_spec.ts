@@ -22,8 +22,6 @@ describe ("User Model", () =>{
       expect(store.delete).toBeDefined();
     });
 
-    });
-
     /*it('create method should add a user', async function create() {
       const result = await store.create({
         id: 1,
@@ -63,6 +61,7 @@ describe ("Test Show and Index functions", () =>{
       expect(result.username).toEqual('firstUser');
       expect(bcrypt.compareSync('haha'+pepper, result.password_digest)).toBe(true);
     });
+  });
   });
 
   async function create() {
