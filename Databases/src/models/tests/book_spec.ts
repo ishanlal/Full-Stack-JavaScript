@@ -2,7 +2,7 @@ import {Book, BookStore} from '../book';
 
 const store = new BookStore();
 
-describe ("Book Model", () =>{
+xdescribe ("Book Model", () =>{
   it('should have an index method', ()=>{
     expect(store.index).toBeDefined();
   });
@@ -17,7 +17,7 @@ describe ("Book Model", () =>{
     });
 });
 
-describe('Test create and delete a book', ()=>{
+xdescribe('Test create and delete a book', ()=>{
   beforeEach(async()=>{
     await create();
   });
@@ -46,7 +46,7 @@ describe('Test create and delete a book', ()=>{
       });
     });*/
 
-describe('Test Show and Index functions', ()=>{
+xdescribe('Test Show and Index functions', ()=>{
     beforeEach(async()=>{
       await create();
     });

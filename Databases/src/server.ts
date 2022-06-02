@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import article_routes from './handlers/article_handlers';
 import book_routes from './handlers/book_handlers';
 import user_routes from './handlers/user_handlers';
+import order_routes from './handlers/order_handlers';
+import product_routes from './handlers/product_handlers';
+import dashboard_routes from './handlers/dashboard_handlers';
 
 const app: express.Application = express();
 const address: string = "0.0.0.0:3000";
@@ -73,6 +76,9 @@ app.delete('/articles/:id', (_req: Request, res: Response) => {
 article_routes(app);
 book_routes(app);
 user_routes(app);
+order_routes(app);
+product_routes(app);
+dashboard_routes(app);
 
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)

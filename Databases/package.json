@@ -7,8 +7,8 @@
     "build": "npx tsc",
     "start": "nodemon src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
-    "migrate": "db-migrate --env test up && db-migrate up",
-    "test": "echo 'ENV=test' >> .env && db-migrate --env test reset && db-migrate --env test up && tsc && jasmine && db-migrate --env test reset",
+    "migrate": "db-migrate --env test up",
+    "test": "echo 'ENV=test' >> .env && db-migrate --env test reset && db-migrate --env test up && tsc && jasmine && db-migrate --env test reset && sed -i '.bak' '/ENV=test/d' .env",
     "tsc": "tsc"
   },
   "author": "Ishan Lal <ishanlal@gmail.com>",
