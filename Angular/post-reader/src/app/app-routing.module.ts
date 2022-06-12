@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LinksComponent } from './links/links.component';
-import { AboutComponent } from './about/about.component';
+import { PostsComponent } from './posts/posts.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
-  {path: '', component: LinksComponent},
-  {path: 'about', component: AboutComponent}
+  { path: '', component: PostsComponent },
+  { path: 'history', component: HistoryComponent }
 ];
 
 @NgModule({
