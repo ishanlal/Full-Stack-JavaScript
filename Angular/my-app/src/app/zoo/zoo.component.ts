@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Animal } from '../models/Animal';
+import { ZooService } from '../zoo.service';
 
 @Component({
   selector: 'app-zoo',
@@ -9,26 +10,10 @@ import { Animal } from '../models/Animal';
 export class ZooComponent implements OnInit {
   animalList: Animal[] = [];
 
-  constructor() { }
+  constructor(private zooService: ZooService) { }
 
   ngOnInit(): void {
-    this.animalList = [
-  {
-    id: 1,
-    name: 'Panda',
-    fed: true
-  },
-  {
-    id: 2,
-    name: 'Elephant',
-    fed: true
-  },
-  {
-    id: 3,
-    name: 'Lion',
-    fed: false
-  }
-];
+    this.animalList = this.zooService.getAnimals();
   }
 
   onLike(animal: Animal): void{

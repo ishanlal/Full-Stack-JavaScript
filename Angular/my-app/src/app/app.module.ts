@@ -8,6 +8,8 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { ZooComponent } from './zoo/zoo.component';
 import { ZooAnimalComponent } from './zoo-animal/zoo-animal.component';
 import { LinksComponent } from './links/links.component';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { DirectoryComponent } from './directory/directory.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { LinksComponent } from './links/links.component';
     RecipeComponent,
     ZooComponent,
     ZooAnimalComponent,
-    LinksComponent
+    LinksComponent,
+    BookmarksComponent,
+    DirectoryComponent
   ],
   imports: [
     BrowserModule,
