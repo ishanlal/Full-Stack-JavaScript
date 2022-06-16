@@ -5,5 +5,6 @@
     {{ animal.name }}
   </li>
 </ul> -->
-
-<app-zoo-animal *ngFor="let animal of animalList" [animal]="animal" (liked)="onLike(animal)"></app-zoo-animal>
+<div fxLayout="row-reverse" fxLayoutAlign="center">
+  <app-zoo-animal fxFlexOffset="15%" *ngFor="let animal of animalList" [animal]="animal" (liked)="onLike(animal)"></app-zoo-animal>
+</div>
