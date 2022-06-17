@@ -12,6 +12,10 @@ import { LinksComponent } from './links/links.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { DirectoryComponent } from './directory/directory.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './users/users.component';
+import { FormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +26,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ZooAnimalComponent,
     LinksComponent,
     BookmarksComponent,
-    DirectoryComponent
+    DirectoryComponent,
+    UsersComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
