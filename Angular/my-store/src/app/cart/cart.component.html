@@ -1,0 +1,11 @@
+<h1 *ngIf="cartItems.length == 0">
+  <div class="empty-cart-message">
+    Cart is Empty!
+  </div>
+</h1>
+
+<!--
+add product display and form code
+-->
+
+<button (click)="clearCartItems()">Reset items of cart</button>
