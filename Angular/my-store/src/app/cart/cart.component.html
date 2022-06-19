@@ -5,7 +5,8 @@
 </h1>
 
 <div>
-    <app-product-item *ngFor="let product of cartItems" [product]="product" (addToCart)="addToCart($event)"></app-product-item>
+    <app-cart-item *ngFor="let product of cartItems" [product]="product"></app-cart-item>
+    <p>Total: {{total}}</p>
 </div>
 
 <button (click)="clearCartItems()">Reset items of cart</button>

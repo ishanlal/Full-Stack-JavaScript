@@ -8,7 +8,7 @@ import { Product } from '../models/Product';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-  quant: number;
+  quant!: number;
   @Input() product: Product;
   @Output() addToCart: EventEmitter<Product> = new EventEmitter;
 
@@ -18,10 +18,9 @@ export class ProductItemComponent implements OnInit {
       name: '',
       price: 0,
       url: '',
-      quantity: 0,
+      quantity: 1,
       description: ''
     }
-    this.quant = 0;
   }
 
   ngOnInit(): void {
@@ -30,6 +29,5 @@ export class ProductItemComponent implements OnInit {
   submitForm(): void {
     this.product.quantity = this.quant;
     this.addToCart.emit(this.product);
-    this.quant = 0;
   }
 }

@@ -20,8 +20,6 @@ export class ProductListComponent implements OnInit {
         product["quantity"] = 1;
       }
       this.products = res;
-      console.log('RES: ', res);
-
     })
   }
 

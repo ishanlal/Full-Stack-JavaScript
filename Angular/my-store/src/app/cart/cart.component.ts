@@ -9,6 +9,7 @@ import { Product } from '../models/Product';
 })
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
+  total: number = 0;
   @Output() buyer_name: EventEmitter<string> = new EventEmitter;
   @Output() order_total: EventEmitter<number> = new EventEmitter;
 
@@ -16,16 +17,19 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
+    this.total = this.cartService.getTotal();
   }
 
   clearCartItems(): void {
     this.cartService.clearCartItems();
+    this.total = this.cartService.getTotal();
     this.cartItems = [];
     alert("Cleared!");
   }
 
   addToCart(item: Product): void{
     this.cartService.addToCartItems(item);
+    this.total = this.cartService.getTotal();
     alert("Product added!");
   }
 }

@@ -12,6 +12,13 @@ export class CartService {
   getCartItems() {
     return this.cartItems;
   }
+  getTotal(): number{
+    let total = 0;
+    for(let j = 0; j<this.cartItems.length ;j++){
+      total = total + (this.cartItems[j].price*this.cartItems[j].quantity);
+    }
+    return Math.round(total);
+  }
   addToCartItems(prod: Product) {
     let found = false;
     for (let i=0; i<this.cartItems.length ;i++){
