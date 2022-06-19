@@ -11,7 +11,7 @@ export class Product{
     this.name = '';
     this.price = 0;
     this.url = '';
-    this.quantity = 1;
+    this.quantity = 0;
     this.description = '';
   }
 }

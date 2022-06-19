@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/Product';
 
@@ -22,5 +22,10 @@ export class CartComponent implements OnInit {
     this.cartService.clearCartItems();
     this.cartItems = [];
     alert("Cleared!");
+  }
+
+  addToCart(item: Product): void{
+    this.cartService.addToCartItems(item);
+    alert("Product added!");
   }
 }

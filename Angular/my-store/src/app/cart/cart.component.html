@@ -4,8 +4,8 @@
   </div>
 </h1>
 
-<!--
-add product display and form code
--->
+<div>
+    <app-product-item *ngFor="let product of cartItems" [product]="product" (addToCart)="addToCart($event)"></app-product-item>
+</div>
 
 <button (click)="clearCartItems()">Reset items of cart</button>

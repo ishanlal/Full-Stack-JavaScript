@@ -8,12 +8,21 @@ export class CartService {
   cartItems: Product[] = [];
 
   constructor() { }
-  
+
   getCartItems() {
     return this.cartItems;
   }
-  addToCartItems(item: Product) {
-    this.cartItems.push(item);
+  addToCartItems(prod: Product) {
+    let found = false;
+    for (let i=0; i<this.cartItems.length ;i++){
+      if(this.cartItems[i].id == prod.id){
+        found = true;
+        this.cartItems[i].quantity = prod.quantity;
+      }
+    }
+    if(!found){
+      this.cartItems.push(prod);
+    }
     return this.cartItems;
   }
   clearCartItems() {

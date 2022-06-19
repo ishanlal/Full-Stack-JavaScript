@@ -12,6 +12,7 @@ import { ProductItemDetailComponent } from './product-item-detail/product-item-d
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ProductItemDetailComponent,
     ProductItemComponent,
     ProductListComponent,
-    NavBarComponent
+    NavBarComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
