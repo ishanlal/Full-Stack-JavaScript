@@ -10,6 +10,9 @@ import { Product } from '../models/Product';
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
   total: number = 0;
+  full_name: string = '';
+  st_addr: string = '';
+  cc_num: number = 0;
   @Output() buyer_name: EventEmitter<string> = new EventEmitter;
   @Output() order_total: EventEmitter<number> = new EventEmitter;
 
@@ -31,5 +34,10 @@ export class CartComponent implements OnInit {
     this.cartService.addToCartItems(item);
     this.total = this.cartService.getTotal();
     alert("Product added!");
+  }
+
+  submitForm(){
+    this.buyer_name.emit(this.full_name);
+    this.order_total.emit(this.total);
   }
 }

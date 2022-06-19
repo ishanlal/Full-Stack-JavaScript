@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -6,15 +7,19 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent implements OnInit {
-  @Input() username: string;
-  @Input() total: number;
+  username: string;
+  total: number;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     this.username = '';
     this.total = 0;
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+    this.username = params['name'];
+    this.total = params['tot'];
+  });
   }
 
 }

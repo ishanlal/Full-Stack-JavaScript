@@ -7,6 +7,17 @@
 <div>
     <app-cart-item *ngFor="let product of cartItems" [product]="product"></app-cart-item>
     <p>Total: {{total}}</p>
+    <form #form="ngForm" (ngSubmit)="submitForm()">
+      <input  required minlength="10" type="text" name="full_name" id="full_name" placeholder="Enter Full Name" [(ngModel)]="full_name">
+      <br>
+      <input  required minlength="10" type="text" name="address" id="address" placeholder="Enter Street Address" [(ngModel)]="st_addr">
+      <br>
+      <input  required minlength="16" maxlength="16" type="text" name="credit_card" id="credit_card" placeholder="Enter 16 digit Credit Card number" [(ngModel)]="cc_num">
+      <br>
+      <a routerLink="/appconfirmation" [queryParams]="{name: full_name, tot:total}">
+      <input type="submit" [disabled]="form.invalid" value="Submit">
+      </a>
+    </form>
 </div>
 
 <button (click)="clearCartItems()">Reset items of cart</button>
