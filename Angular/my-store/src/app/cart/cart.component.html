@@ -5,9 +5,9 @@
 </h1>
 
 <div>
-    <app-cart-item *ngFor="let product of cartItems" [product]="product"></app-cart-item>
+    <app-cart-item *ngFor="let product of cartItems" [product]="product" (addToCart)="addToCart($event)"></app-cart-item>
     <p>Total: {{total}}</p>
-    <form #form="ngForm" (ngSubmit)="submitForm()">
+    <form #form="ngForm">
       <input  required minlength="10" type="text" name="full_name" id="full_name" placeholder="Enter Full Name" [(ngModel)]="full_name">
       <br>
       <input  required minlength="10" type="text" name="address" id="address" placeholder="Enter Street Address" [(ngModel)]="st_addr">

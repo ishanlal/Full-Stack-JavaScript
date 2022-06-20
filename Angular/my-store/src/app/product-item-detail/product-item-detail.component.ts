@@ -48,6 +48,5 @@ export class ProductItemDetailComponent implements OnInit {
   submitForm(): void {
     this.product.quantity = this.quant;
     this.cartService.addToCartItems(this.product);
-    alert("Product added!");
   }
 }
