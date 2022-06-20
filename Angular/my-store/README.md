@@ -1,6 +1,21 @@
 # MyStore
 
+A single page e-commerce application to offer a rich, dynamic experience on the web.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
+
+## Why is this project important?
+
+Many applications we use daily include the functionality to read, write, update, and delete content provided by APIs. For example, a typical image-sharing social media application may allow you to view photos, add photos, edit them, and remove them from an album or user account. Similar to such applications, this project relies on input from users of the application. This project presents skills in designing and creating interactive CRUD applications in the real world.
+
+## Project Features
+
+This application reflects the same user experience as that of a real-world e-commerce website, including a(n):
+- Product list page, which displays the available products for the user to choose and add to their cart (in various quantities)
+- Product details page, which displays more information about any particular product
+- Shopping cart, which includes the products that the user has added to their cart
+- Checkout form, which collects information about the user (e.g., name, address, payment details, etc.)
+- Order confirmation page, which shows the outcome after the user completes the checkout process (i.e., submits the checkout form)
 
 ## Development server
 

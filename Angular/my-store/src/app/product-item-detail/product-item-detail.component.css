@@ -10,6 +10,7 @@ img {
 
 .detail-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 64px;
@@ -21,5 +22,5 @@ img {
 }
 
 .back-link {
-  margin-top: 8px;
+  margin-top: 50px;
 }

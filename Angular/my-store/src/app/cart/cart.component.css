@@ -4,12 +4,12 @@ img {
 }
 
 .form-margin {
-  margin-bottom: 12px;
+  margin-bottom: 108px;
 }
 
 .cart-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 20px;
 }
 
